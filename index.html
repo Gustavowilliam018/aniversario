@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f7">
+  <title>Para você, Emma ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fff8f7;
+      --paper: #ffffff;
+      --red: #c94f62;
+      --red-dark: #a93c50;
+      --red-soft: #f8dfe2;
+      --pink: #fbecef;
+      --text: #49353a;
+      --muted: #8d7379;
+      --line: #f0d6da;
+      --shadow: 0 18px 55px rgba(145, 61, 79, .10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      background:
+        radial-gradient(circle at 10% 8%, rgba(248, 223, 226, .75), transparent 28rem),
+        radial-gradient(circle at 90% 80%, rgba(255, 226, 229, .65), transparent 25rem),
+        var(--bg);
+    }
+
+    .page {
+      width: min(100% - 32px, 900px);
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 70px 12px 55px;
+    }
+
+    .eyebrow {
+      color: var(--red);
+      font-size: .75rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .tiny-heart {
+      color: var(--red);
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin-top: 17px;
+      font: 600 clamp(2.7rem, 8vw, 5.8rem)/1.08 "Playfair Display", serif;
+      letter-spacing: -.04em;
+    }
+
+    h1 span {
+      color: var(--red);
+      font-style: italic;
+    }
+
+    .subtitle {
+      max-width: 490px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: clamp(.98rem, 2vw, 1.1rem);
+      line-height: 1.8;
+    }
+
+    .decor {
+      margin-top: 28px;
+      color: #d98b98;
+      letter-spacing: .55em;
+    }
+
+    .open-button {
+      margin-top: 32px;
+      border: 0;
+      border-radius: 999px;
+      padding: 16px 27px;
+      background: var(--red);
+      color: white;
+      font: 600 .95rem "DM Sans", sans-serif;
+      box-shadow: 0 10px 24px rgba(201, 79, 98, .25);
+      cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+
+    .open-button:hover {
+      transform: translateY(-3px);
+      background: var(--red-dark);
+      box-shadow: 0 14px 30px rgba(201, 79, 98, .3);
+    }
+
+    .open-button:focus-visible {
+      outline: 3px solid #e7a2ad;
+      outline-offset: 4px;
+    }
+
+    .open-button:disabled {
+      cursor: default;
+      opacity: .85;
+    }
+
+    .gift-content {
+      display: none;
+      padding: 0 0 80px;
+      animation: appear .8s ease both;
+    }
+
+    .gift-content.visible {
+      display: block;
+    }
+
+    .message-card {
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(25px, 6vw, 55px);
+      box-shadow: var(--shadow);
+    }
+
+    .section-label {
+      text-align: center;
+      color: var(--red);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 12px 0 28px;
+      font: 600 clamp(2rem, 5vw, 3.3rem)/1.15 "Playfair Display", serif;
+    }
+
+    .letter p {
+      font: 400 clamp(1.05rem, 2.5vw, 1.2rem)/1.95 "DM Sans", sans-serif;
+      color: #624b51;
+      margin-top: 17px;
+    }
+
+    .letter .signoff {
+      text-align: center;
+      color: var(--red-dark);
+      font: italic 600 1.35rem "Playfair Display", serif;
+      margin-top: 28px;
+    }
+
+    .memory-heading {
+      margin: 60px 0 22px;
+      text-align: center;
+    }
+
+    .memory-heading h2 {
+      margin-bottom: 10px;
+    }
+
+    .memory-heading p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .memory {
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .memory img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      border-radius: 14px;
+      background: var(--pink);
+    }
+
+    .memory p {
+      text-align: center;
+      padding: 13px 6px 8px;
+      color: var(--muted);
+      font: italic 1.08rem "Playfair Display", serif;
+    }
+
+    .closing {
+      text-align: center;
+      padding: 55px 12px 0;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .closing .heart {
+      display: block;
+      color: var(--red);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .footer {
+      padding: 35px 10px 25px;
+      text-align: center;
+      color: #a58d92;
+      font-size: .85rem;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.13);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: 82vh;
+        padding-top: 50px;
+      }
+
+      .gallery {
+        gap: 11px;
+      }
+
+      .memory {
+        padding: 7px;
+        border-radius: 17px;
+      }
+
+      .memory img {
+        border-radius: 11px;
+      }
+
+      .memory p {
+        font-size: .98rem;
+      }
+
+      .message-card {
+        border-radius: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="tiny-heart" aria-hidden="true">♥</div>
+
+      <p class="eyebrow">Um dia todinho seu</p>
+
+      <h1>
+        Feliz aniversário,<br>
+        <span>minha Emma</span>
+      </h1>
+
+      <p class="subtitle">
+        Mais um aninho da pessoa que eu tenho tanta sorte de ter na minha vida. ❤️❤️❤️ ❤️
+      </p>
+
+      <div class="decor" aria-hidden="true">♡ &nbsp; ✦ &nbsp; ♡</div>
+
+      <button class="open-button" id="openGift" type="button">
+        Abrir seu presente ♥
+      </button>
+    </section>
+
+    <section class="gift-content" id="giftContent" aria-hidden="true">
+
+      <article class="message-card">
+        <p class="section-label">De Gustavo para você</p>
+
+        <h2>Minha carta pra você</h2>
+
+        <div class="letter">
+          <p>Feliz aniversário minha mohzinha ❤️</p>
+
+          <p>
+            Hj é seu dia e eu espero de coração que voce aproveite ele bem
+            e lembre-se do quanto você é amada por mim. Você é uma pessoa
+            muito muito especial pra mim e eu queria que você nunca se
+            esquecesse disso.
+          </p>
+
+          <p>
+            Vc merece tudo de melhor e merece que seus dias sejam mais leves
+            e que nunca lhe falte amor na sua vida. Se dependesse de mim,
+            eu iria ta fazendo parte de tudo isso e estar do seu lado pra
+            ver vc conquistar cada um de seus objetivos.
+          </p>
+
+          <p>
+            Infelizmente nao consigo te dar tudo que vc merece mas quero
+            que vc saiba que eu sempre vou querer te ver feliz e que voce
+            é bastante importante para mim. Feliz aniversário novamente
+            amor e que esse novo ano da sua vida seja tão especial quanto
+            vc é pra mim❤️
+          </p>
+
+          <p class="signoff">
+            Eu te amo. Feliz Aniversário vida, Emma. ❤️
+          </p>
+        </div>
+      </article>
+
+      <div class="memory-heading">
+        <p class="section-label">Literalmente nos</p>
+        <h2>Nossas lembranças</h2>
+        <p>Quatro imagens, que sao literalmente.</p>
+      </div>
+
+      <section class="gallery" aria-label="Quatro fotos especiais">
+
+        <article class="memory">
+          <img src="img/img1.jpeg" alt="Aba x Paracelsus" loading="lazy">
+          <p>nos somos muito a Aba e Paracelsus</p>
+        </article>
+
+        <article class="memory">
+          <img src="img/img3.jpeg" alt="Nossa lembrança" loading="lazy">
+          <p>Aba X Paracelsus</p>
+        </article>
+
+        <article class="memory">
+          <img src="img/img2.jpeg" alt="Eu de cenobita" loading="lazy">
+          <p>Você comigo</p>
+        </article>
+
+        <article class="memory">
+          <img src="img/img4.jpeg" alt="Nossa lembrança número quatro" loading="lazy">
+          <p>O grande Finale baby</p>
+        </article>
+
+      </section>
+
+      <div class="closing">
+        <span class="heart">♥</span>
+        <p>Não é um presente caro, mas foi feito pensando em você.</p>
+        <p>Com amor, Gustavo.</p>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      Feito com carinho, só para você. ♡
+    </footer>
+
+  </main>
+
+  <script>
+    const openButton = document.getElementById("openGift");
+    const giftContent = document.getElementById("giftContent");
+
+    openButton.addEventListener("click", () => {
+      giftContent.classList.add("visible");
+      giftContent.setAttribute("aria-hidden", "false");
+      openButton.textContent = "Seu presente está aqui ♥";
+      openButton.disabled = true;
+
+      giftContent.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+  </script>
+</body>
+</html>
